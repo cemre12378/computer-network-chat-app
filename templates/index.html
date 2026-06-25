@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Chat Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>💬 Web Chat Application 🔐</h1>
+            <p>Şifreli Sohbet Uygulaması</p>
+        </div>
+
+        <!-- LOGIN SECTION -->
+        <div id="loginSection" class="login-section">
+            <div class="login-box">
+                <!-- LOGIN FORM -->
+                <div id="loginForm" style="display: block;">
+                    <h2>👋 Giriş Yap</h2>
+                    <input 
+                        type="text" 
+                        id="loginUsername" 
+                        placeholder="Kullanıcı adı..." 
+                        autocomplete="off"
+                    >
+                    <input 
+                        type="password" 
+                        id="loginPassword" 
+                        placeholder="Şifre..." 
+                        autocomplete="off"
+                    >
+                    <button onclick="login()">🔓 Giriş Yap</button>
+                    <p class="form-switch">Hesabı yoksa? <a onclick="toggleAuthForm()">Kayıt ol</a></p>
+                    <div id="loginMessage" class="message-box"></div>
+                </div>
+
+                <!-- REGISTER FORM -->
+                <div id="registerForm" style="display: none;">
+                    <h2>📝 Kayıt Ol</h2>
+                    <input 
+                        type="text" 
+                        id="registerUsername" 
+                        placeholder="Kullanıcı adı..." 
+                        autocomplete="off"
+                    >
+                    <input 
+                        type="password" 
+                        id="registerPassword" 
+                        placeholder="Şifre..." 
+                        autocomplete="off"
+                    >
+                    <input 
+                        type="password" 
+                        id="registerPasswordConfirm" 
+                        placeholder="Şifre Tekrar..." 
+                        autocomplete="off"
+                    >
+                    <button onclick="register()">✏️ Kayıt Ol</button>
+                    <p class="form-switch">Zaten hesabı var mı? <a onclick="toggleAuthForm()">Giriş yap</a></p>
+                    <div id="registerMessage" class="message-box"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHAT SECTION -->
+        <div id="chatSection" class="chat-section" style="display: none;">
+            <!-- SIDEBAR -->
+            <div class="sidebar">
+                <h3>👤 Hoşgeldiniz</h3>
+                <p id="currentUser">User</p>
+                <button class="logout-btn" onclick="logout()">🚪 Çıkış Yap</button>
+
+                <div class="conversations-section">
+                    <h4>💬 Sohbetler</h4>
+                    <div id="conversationsList" class="conversations-list"></div>
+                </div>
+
+                <div class="online-users-section">
+                    <h4>👤 Online Users</h4>
+                    <div id="onlineUsersList" class="online-users-list"></div>
+                </div>
+            </div>
+
+            <!-- MAIN CHAT -->
+            <div class="chat-main">
+                <div id="messages" class="messages">
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: #999;">
+                        <div style="font-size: 50px; margin-bottom: 20px;">💬</div>
+                        <div style="font-size: 20px; font-weight: bold; margin-bottom: 10px;">Sohbete Hoşgeldiniz!</div>
+                        <div style="font-size: 14px;">Sol taraftan bir sohbet seçin</div>
+                    </div>
+                </div>
+
+                <!-- INPUT AREA -->
+                <div class="input-area">
+                    <input 
+                        type="text" 
+                        id="messageInput" 
+                        placeholder="Mesaj yazınız..." 
+                        autocomplete="off"
+                    >
+                    <button onclick="sendMessage()">Gönder</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/3.0.0-rc.1/jsencrypt.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
