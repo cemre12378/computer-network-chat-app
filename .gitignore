@@ -1,4 +1,8 @@
 __pycache__/
 *.pyc
+*.code-workspace
+chat.db
+.DS_Store__pycache__/
+*.pyc
 chat.db
 .DS_Store
